@@ -46,7 +46,7 @@ h1 {
     text-align: center;
     font-size:x-large;
     padding-top: 5%;
-    color: rgb(153, 151, 151);
+    color: rgb(201, 148, 148);
 }
 
 h2 {
@@ -126,18 +126,24 @@ footer {
 }
 
 #adicional {
-  background-color: rgba(80, 79, 79, 0.884);  
-  height: 200px;
-    padding: 40px;
-    padding-right: 20px;
-    align-items: center;
-    max-width: 100%;
-    max-height: 1300vh;
-    justify-content: center;
+  background: rgb(170, 170, 170);
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    border: solid;
 }
-.img4 {
-  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvCyNx3g2_MFEuW4N1tdwqHb3bFSdjEys6KvSvZy1c15HaaK1GaEjhCr3Pcfz8lrz7DKU&usqp=CAU);
-}
+
+/*#adicional p{
+  color: white;
+  width: 49%;
+  height: 80%;
+  padding: 10% 5% 10% 5%;
+
+
+}*/
+
+
+
 
 .articleblog { 
     vertical-align: top;
