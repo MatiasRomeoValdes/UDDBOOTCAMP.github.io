@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color:white;
+}
+
+.div-titulo {
+    border: 1px solid red ;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-titulo h1 {
+    border: 1px solid blue;
+    font-weight: 300;
+}
+
+.contenedor {
+    border: 1px solid purple;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* ESTILOS FORMULARIO */
+.contenedor .div-formulario {
+    border: 1px solid black;
+    width: 90%;
+    height: 250px;
+    margin: 15px 15px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.contenedor .div-formulario h2 {
+    border: solid 1px green;
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 2em;
+    color: black;
+}
+
+.contenedor .div-formulario form {
+    border: 1px solid red;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor .div-formulario form input{
+    border: 1px solid red;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    display: flex;
+}
+.contenedor .div-formulario form button {
+    border: 1px solid red;
+    width: 20%;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    display: flex;
+    margin-left: 40%;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+/* ESTILOS LISTADO */
+.contenedor .div-listado {
+    border: 1px solid blue;
+    width: 80%;
+    height: 90%;
+    margin: 15px 15px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.contenedor .div-listado h2 {
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 2em;
+    color: black;
+}
+
+/*agregaran los nombres*/
+.contenedor .div-listado .div-empleados {
+    border: solid 1px   purple;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+    padding: 0 30px;
+}
+
+.contenedor .div-listado .div-empleados p {
+    margin: 10px 0;
+    font-size: 1em;
+    color: black;
+}
+
+hr {
+    width: 100%;
+    height: 10px;
+}
+
+.btn {
+    padding: 5px 10px;
+    border: none;
+    margin: 0 5px;
+    color: white;
+    border-radius: 50px;
+}
+
+.btn-editar {
+    background-color: green;
+}
+
+.btn-eliminar {
+    background-color: red;
+}
