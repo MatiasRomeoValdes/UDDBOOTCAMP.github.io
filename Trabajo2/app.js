@@ -1,188 +1,161 @@
-let listaEmpleados = [];
+let toDoList = [];
 
-const objEmpleado = {
-    id: '',
-    nombre: '',
-    puesto: '',
-    descripcion: '',
-    rut:''
+function get(element){
+	return document.querySelector(element);
 }
 
-let editando = false;
-
-const formulario = document.querySelector('#formulario');
-const nombreInput = document.querySelector('#nombre');
-const puestoInput = document.querySelector('#puesto');
-const descripcionInput = document.querySelector('#descripcion');
-const rutInput = document.querySelector('#rut');
-const btnAgregarInput = document.querySelector('#btnAgregar');
-
-formulario.addEventListener('submit', validarFormulario);
-
-function validarFormulario(e) {
-    e.preventDefault();
-
-    if(nombreInput.value === '' || puestoInput.value === '' || descripcionInput.value === '' || rutInput.value === '') {
-        alert('Todos los campos se deben llenar');
-        return;
-    }
-
-    if(editando) {
-        editarEmpleado();
-        editando = false;
-    } else {
-        
-        objEmpleado.id = Date.now();
-        objEmpleado.nombre = nombreInput.value;
-        objEmpleado.puesto = puestoInput.value;
-        objEmpleado.descripcion = descripcionInput.value;
-        objEmpleado.rut = rutInput.value;
-
-        agregarEmpleado();
-        GuardarBd();
-    }
+function getAll(element){
+	return document.querySelectorAll(element);
 }
 
-function agregarEmpleado() {
-
-    listaEmpleados.push({...objEmpleado});
-    
-
-    mostrarEmpleados();
-    GuardarBd();
-    formulario.reset();
-    limpiarObjeto();
-}
-
-function limpiarObjeto() {
-    objEmpleado.id = '';
-    objEmpleado.nombre = '';
-    objEmpleado.puesto = '';
-    objEmpleado.descripcion = '';
-    objEmpleado.rut = '';
+function cleanToDoList(){
+	get("#toDoList").innerHTML = '';
 }
 
 
-const GuardarBd =() =>{
 
-    localStorage.setItem('empleados', JSON.stringify(listaEmpleados))
+function addTodo(){
+	const inputValue = get("#input").value;
+	const descValue = get("#desc").value;
+	
+  toDoList = JSON.parse(localStorage.getItem('puesto_trabajo'));
+	
+  if(inputValue.length) {
+    const id_libro = 'id' + (new Date()).getTime();
+    toDoList.push({
+		id: id_libro,
+	name: get("#input").value,
+	description: descValue,
+	isEditing: false
+		});
+	
+
+		
+    localStorage.setItem('puesto_trabajo', JSON.stringify(toDoList));
+		
+	get("#input",).value = "";
+		get("#desc",).value = "";
+		updateToDoList();
+	}
 }
 
-const PintarDB =() =>{
-
-
-    listaEmpleados = JSON.parse(localStorage.getItem('empleados'))
-
-    console.log(listaEmpleados);
-
-    if (listaEmpleados === null){
-
-        listaEmpleados = [];
-
-    }else{ 
-        listaEmpleados.forEach(element =>{
-            console.log(element);
-            formulario.innerHTML += `${element.nombre} - ${element.puesto} - ${element.descripcion} - ${element.rut}` ;     
-        })
-    }
-
-    }
-
-
-
-
-document.addEventListener('DOMContentLoaded', PintarDB)
-
-
-
-function mostrarEmpleados() {
-    limpiarHTML();
-
-    const divEmpleados = document.querySelector('.div-empleados');
-    
-    listaEmpleados.forEach(empleado => {
-        const {id, nombre, puesto, descripcion, rut} = empleado;
-
-        const parrafo = document.createElement('p');
-        parrafo.textContent = `${nombre} - ${puesto} - ${descripcion} - ${rut}` ;
-        parrafo.dataset.id = id;
-
-        const editarBoton = document.createElement('button');
-        editarBoton.onclick = () => cargarEmpleado(empleado);
-        editarBoton.textContent = 'Editar';
-        editarBoton.classList.add('btn', 'btn-editar');
-        parrafo.append(editarBoton);
-
-        const eliminarBoton = document.createElement('button');
-        eliminarBoton.onclick = () => eliminarEmpleado(id);
-        eliminarBoton.textContent = 'Eliminar';
-        eliminarBoton.classList.add('btn', 'btn-eliminar');
-        parrafo.append(eliminarBoton);
-
-        const hr = document.createElement('hr');
-
-        divEmpleados.appendChild(parrafo);
-        divEmpleados.appendChild(hr);
-    });
+function removeToDo(element){
+	element.addEventListener("click", function(){
+		const dataId = element.parentElement.parentElement.getAttribute("data-id")
+		toDoList = toDoList.filter(function(item){
+			return item.id != dataId
+		});
+		
+		localStorage.setItem('puesto_trabajo', JSON.stringify(toDoList));
+		
+		updateToDoList()			
+	})
 }
 
-function cargarEmpleado(empleado) {
-    const {id, nombre, puesto, descripcion, rut} = empleado;
 
-    nombreInput.value = nombre;
-    puestoInput.value = puesto;
-    descripcionInput.value = descripcion;
-    rutInput.value = rut;
-
-    objEmpleado.id = id;
-
-    formulario.querySelector('button[type="submit"]').textContent = 'Actualizar';
-    
-    editando = true;
+function toggleEditToDo(element){
+	element.addEventListener("click", function(){
+		const dataId = element.parentElement.parentElement.getAttribute("data-id")
+		toDoList = toDoList.map(function(item){
+			return {
+				...item,
+				isEditing: item.id == dataId
+			}
+		})
+				
+		updateToDoList()			
+	})
 }
 
-function editarEmpleado() {
-
-    objEmpleado.nombre = nombreInput.value;
-    objEmpleado.puesto = puestoInput.value;
-    objEmpleado.descripcion = descripcionInput.value;
-    objEmpleado.rut = rut.value;
-
-    listaEmpleados.map(empleado => {
-
-        if(empleado.id === objEmpleado.id) {
-            empleado.id = objEmpleado.id;
-            empleado.nombre = objEmpleado.nombre;
-            empleado.puesto = objEmpleado.puesto;
-            empleado.descripcion = objEmpleado.descripcion;
-            empleado.rut = objEmpleado.rut;
-
-        }
-
-    });
-
-    limpiarHTML();
-    mostrarEmpleados();
-    formulario.reset();
-
-    formulario.querySelector('button[type="submit"]').textContent = 'Agregar';
-    
-    editando = false;
+function hideEditTodo(element){
+	element.addEventListener("click", function(){
+		const dataId = element.parentElement.parentElement.getAttribute("data-id")
+		toDoList = toDoList.map(function(item){
+			return {
+				...item,
+				isEditing: item.id == dataId ? false : item.isEditing
+			}
+		})
+				
+		updateToDoList()			
+	})
 }
 
-function eliminarEmpleado(id) {
+function editToDo(element) {
+	element.addEventListener("submit", (e) => {
+		e.preventDefault();
+		
+		const dataId = element.parentElement.getAttribute("data-id");
+		const inputValue = element.children[0].value;
+		const descValue = element.children[1].value;
+		
+		toDoList = toDoList.map(function(item) {
+			return {
+				...item,
+				name: dataId == item.id ? inputValue : item.name,
+				description: dataId == item.id ? descValue : item.description,
+				isEditing: false
+			};
+		  });
 
-    listaEmpleados = listaEmpleados.filter(empleado => empleado.id !== id);
-
-    limpiarHTML();
-    mostrarEmpleados();
+		updateToDoList()
+	});
 }
 
-function limpiarHTML() {
-    const divEmpleados = document.querySelector('.div-empleados');
-    while(divEmpleados.firstChild) {
-        divEmpleados.removeChild(divEmpleados.firstChild);
-    }
+function updateToDoList() {
+	cleanToDoList();
+	toDoList.forEach(function(item) {
+		get("#toDoList").innerHTML += `
+			<li 
+				data-id="${item.id}"
+				class="flex justify-between w-full border items-center border-radius p-1 mb-1"
+			>
+				${item.isEditing ? 
+					`
+						<form class="editForm">
+							<input value="${item.name}" type="text" />
+							<button type="submit" class="confirmEdit cursor-pointer">✅</button>
+							<button class="cancelEdit cursor-pointer">❌</button>
+						</form>
+					` :
+					`${item.name}
+					<div>
+						<span class="toggleEditToDo cursor-pointer">✏</span>
+						<span class="removeToDo cursor-pointer">❌</span>
+					</div>`
+				}
+			</li>
+		`;
+	});
+	
+	getAll(".removeToDo").forEach(function(element) {
+		removeToDo(element);
+	});
+	
+	getAll(".toggleEditToDo").forEach(function(element) {
+		toggleEditToDo(element)
+	})
+	
+	getAll(".editForm").forEach(function(element) {
+		editToDo(element)
+	})
+	
+	getAll(".cancelEdit").forEach(function(element) {
+		hideEditTodo(element)
+	})
 }
 
-//asdasdsadsa
+get("#form").addEventListener("submit", function(e){
+	e.preventDefault()
+	addTodo()
+})
+
+//Implementación de LocalStorage
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('puesto_trabajo') == null) {
+    localStorage.setItem('puesto_trabajo', JSON.stringify([]));
+  } else {
+    toDoList = JSON.parse(localStorage.getItem('puesto_trabajo'));
+    updateToDoList();
+  }
+}); 
