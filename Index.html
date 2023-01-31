@@ -1,123 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
+  <h1>Puestos de Trabajo</h1>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing de Ventas</title>
-  <link rel="stylesheet" href="Landing1\assets\css\proyecto.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+  <title>Puesto de Trabajo
+  </title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+  <link rel="stylesheet" href="estilos.css">
 </head>
-
 <body>
-  <header>
-    <img class="imghead">
-    <div class="input">
-    </div>
-    <nav role="navigation">
-      <div id="menuToggle">
-        <input type="checkbox" />
-        <span></span>
-        <span></span>
-        <span></span>
-        <ul id="menu">
-          <a href="#">
-            <li>Catalogo</li>
-          </a>
-          <a href="#">
-            <li>Quienes Somos</li>
-          </a>
-          <a href="#">
-            <li>Contacto</li>
-            <a href="#">
-            <li>Registro</li>
-          </a>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <main>
-    <section id="jumbotron">
-      <div class="jumbopad">
-        <H1>Nuestra línea de Cuchillos culinarios de alta gastronomía</H1>
-        <p>Descubre nuestros productos exclusivos para tu cocina y alcanza otro nivel de gastronomía.</p></div>
-        <div class="container mt-3">
-          <form class="email">
-            <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Ingrese Email" name="email">
-            
-            <button type="submit" class="btn btn-primary">Enviar</button>
-          </form>
-        </div>
-        </div>
-    </section>
-    <section id="blog">
-      <article class="articleblog">
-        <img class="img1">
-        <span class="caption">Sección de Cuchillos Santokus. Metal japones de orígen.</span>
-      </article>
-      <article class="articleblog">
-        <img class="img2">
-        <span class="caption">Conoce nuestra sección de cuchillos Wustöf. Categoría de calidad mundialmente reconocida.</span>
-      </article>
-      <article class="articleblog">
-        <img class="img3">
-        <span class="caption">Sección de Cuchillos especializados. Machetes chinos ideal para platos de orígen asiáticos.</span>
-      </article>
-    </section>
-    <section id="adicional">
-      <div class="row d-flex justify-content-center">
-      </div>
-    
-      <div class="row text-center d-flex align-items-stretch">
-        <div class="col-md-4 mb-5 mb-md-0 d-flex align-items-stretch">
-          <div class="card testimonial-card">
-            <div class="card-up" style="background-color: #bda9bcc7;">
-            
-            <p><i>"Compré un cuchillo Santoku y es la mejor inversión que he hecho para cocinar. 
-              La diferencia es abismal y sinceramente recomiendo 100% cada producto que Knifes Co. les ofrece a sus clientes, ya que importan productos verificados por su calidad y origen."
-            Maria Munizagandu</i></p>
-            </div>
-            
-              
-            </div>
-           
-             
-      </div>
-    </section>
-    <div class="footer-dark">
-      <footer>
-          <div class="container">
-              <div class="row">
-                  <div class="col-sm-6 col-md-3 item">
-                      <h3>Servicios</h3>
-                      <ul>
-                          <li><a href="#">Productos</a></li>
-                          <li><a href="#">Envios</a></li>
-                          <li><a href="#">Cotizaciones</a></li>
-                      </ul>
-                  </div>
-                  <div class="col-sm-6 col-md-3 item">
-                      <h3>Nosotros</h3>
-                      <ul>
-                          <li><a href="#">Nuestra Historia</a></li>
-                          <li><a href="#">Equipo</a></li>
-                          <li><a href="#">Tiendas</a></li>
-                      </ul>
-                  </div>
-                  <div class="col-md-6 item text">
-                      <h3>Knife Co.</h3>
-                      
-                  </div>
-                  <div class="col item social"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-github"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
-              </div>
-              <p class="copyright">Knife Co. © 2022</p>
-          </div>
-      </footer>
-  </div>
-  </main>
-</body>
+  <h2>Esta planilla sirve para actualizar los distintos roles y puestos de trabajos en la empresa
+    con el fin de crear una lista modificable para estar al tanto de los cambios estructurales
+    de la compañía.
+  </h2>
 
+  <form id="form">
+    <label>
+      <input id="input" class="input-texto" type="text" placeholder="Puesto de Trabajo" autocomplete="off" required autofocus />
+      <input id="desc" class="input-texto" type="text" placeholder="Ingrese descripción del rol" autocomplete="off" required autofocus />
+      <button type="submit">Agregar</button>
+    </label>
+  </form>
+
+  <ul class="m-0 p-0" id="toDoList"></ul>
+
+
+
+  <script src="app.js"></script>
+</body>
+<footer>   <div
+  class="text-center p-3"
+  style="background-color: rgba(0, 0, 0, 0.2)"
+  >
+Creado por Matías Romeo Valdés 30 de enero de 2023 :
+<a class="text-white" href="https://github.com/MatiasRomeoValdes/UDDBOOTCAMP.git"
+  >GitHUB</a
+ >
+</div>
+</footer>
 </html>
