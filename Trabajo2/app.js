@@ -14,6 +14,7 @@ function cleanToDoList(){
 
 
 
+
 function addTodo(){
 	const inputValue = get("#input").value;
 	const descValue = get("#desc").value;
@@ -21,12 +22,12 @@ function addTodo(){
   toDoList = JSON.parse(localStorage.getItem('puesto_trabajo'));
 	
   if(inputValue.length) {
-    const id_libro = 'id' + (new Date()).getTime();
+    const puestos = 'id' + (new Date()).getTime();
     toDoList.push({
-		id: id_libro,
-	name: get("#input").value,
-	description: descValue,
-	isEditing: false
+		id: puestos,
+		name: get("#input").value,
+		description: get("#desc").value,
+		isEditing: false
 		});
 	
 
@@ -89,12 +90,13 @@ function editToDo(element) {
 		const inputValue = element.children[0].value;
 		const descValue = element.children[1].value;
 		
+		
 		toDoList = toDoList.map(function(item) {
 			return {
 				...item,
 				name: dataId == item.id ? inputValue : item.name,
-				description: dataId == item.id ? descValue : item.description,
-				isEditing: false
+        description: dataId == item.id ? descValue : item.description,
+        isEditing: false
 			};
 		  });
 
@@ -114,8 +116,13 @@ function updateToDoList() {
 					`
 						<form class="editForm">
 							<input value="${item.name}" type="text" />
+							<input value="${item.description}" type="text" />
 							<button type="submit" class="confirmEdit cursor-pointer">✅</button>
 							<button class="cancelEdit cursor-pointer">❌</button>
+						</form>
+						<form class="editForm">
+						
+		
 						</form>
 					` :
 					`${item.name}
