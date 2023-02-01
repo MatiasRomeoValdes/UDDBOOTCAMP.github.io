@@ -166,3 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
     updateToDoList();
   }
 }); 
+window.onload = function() {
+    if (localStorage.getItem("itemsKey") == null) {
+    localStorage.setItem("itemsKey", JSON.stringify(itemsKey));
+    } else {
+    items = JSON.parse(localStorage.getItem("itemsKey"));
+    }
+    renderItems();
+    };
