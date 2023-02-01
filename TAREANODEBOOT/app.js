@@ -1,1 +1,0 @@
-const calculadora = require( './calculadora')
